@@ -10,10 +10,9 @@ CHANNELS = 1
 RATE = 44100
 CHUNK = 1024
 
-# Create socket and connect to the server
-client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# Create socket and set server address
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 server_address = ('localhost', 9990)
-client_socket.connect(server_address)
 
 # Open audio stream
 stream = audio.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, frames_per_buffer=CHUNK)
@@ -22,9 +21,9 @@ stream = audio.open(format=FORMAT, channels=CHANNELS, rate=RATE, input=True, fra
 try:
     while True:
         data = stream.read(CHUNK)
-        client_socket.sendall(data)
+        client_socket.sendto(data, server_address)
 except:
-    print('hanged up')
+    print('Hanged up')
 
 # Cleanup
 stream.stop_stream()

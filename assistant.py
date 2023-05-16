@@ -31,21 +31,5 @@ def mouse_control():
     except KeyboardInterrupt:
         print('controlled mouse mod has been turn off by user')
 
-
-def send_voice():
-    global addresses
-    voice_sending = UdpClient(addresses[1], 9990)
-    audio = pyaudio.PyAudio()
-    voice_format = pyaudio.paInt16
-    channels = 1
-    rate = 44100
-    chunk = 1024
-    stream = audio.open(format=voice_format, channels=channels, rate=rate, input=True, frames_per_buffer=chunk)
-
-    # Continuously read audio from the microphone and send it to the server
-    try:
-        while True:
-            data = stream.read(chunk)
-            voice_sending.send(data)
-    except:
-        print('hanged up')
+time.sleep(3)
+mouse_control()
