@@ -2,6 +2,8 @@ from tcp_client import TcpClient
 from tcp_server import TcpServer
 from udp_server import UdpServer
 from udp_server import UdpServer
+from voice_server import get_voice
+from voice_client import send_voice
 import pyautogui
 import keyboard
 import socket
@@ -29,20 +31,4 @@ def mouse_mover():
         if keyboard.is_pressed('b'):
             break
 
-def get_voice():
-    audio = pyaudio.PyAudio()
-    voice_format = pyaudio.paInt16
-    channels = 1
-    rate = 44100
-    chunk = 1024
-    voice_getting = UdpServer(9990)
-    stream = audio.open(format=voice_format, channels=channels, rate=rate, output=True, frames_per_buffer=chunk)
-
-    # Continuously receive audio data from the client and play it
-    print('press d to hang up.')
-    while True:
-        data = voice_getting.listen()
-        stream.write(data)
-        if keyboard.is_pressed('d'):
-            break
 

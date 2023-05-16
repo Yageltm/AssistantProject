@@ -2,6 +2,8 @@ from tcp_client import TcpClient
 from tcp_server import TcpServer
 from udp_client import UdpClient
 from udp_server import UdpServer
+from voice_server import get_voice
+from voice_client import send_voice
 import pyaudio
 import pyautogui
 import time
@@ -17,7 +19,7 @@ savior.close()
 # first connection to helped server
 helping_tcp = TcpClient(addresses[1], int(addresses[2]))
 helping_tcp.send("I'm ready to help")
-helping_udp = UdpClient(addresses[1], int(addresses[3]))
+helping_udp = UdpClient('localhost', int(addresses[3]))
 helping_udp.send("I'm ready to help but in udp")
 
 
@@ -31,5 +33,4 @@ def mouse_control():
     except KeyboardInterrupt:
         print('controlled mouse mod has been turn off by user')
 
-time.sleep(3)
-mouse_control()
+time.sleep(1)
