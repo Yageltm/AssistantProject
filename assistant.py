@@ -16,7 +16,7 @@ savior.close()
 # first connection to helped server
 helping_tcp = TcpClient(data[1], int(data[2]))
 helping_tcp.send("I'm ready to help")
-helping_udp = UdpClient('localhost', int(data[3]))
+helping_udp = UdpClient(data[1], int(data[3]))
 helping_udp.send("I'm ready to help but in udp")
 
 

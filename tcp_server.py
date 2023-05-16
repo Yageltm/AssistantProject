@@ -6,8 +6,8 @@ class TcpServer:
         self.client_socket = None
         self.port = port
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        # self.host_ip = socket.gethostbyname(socket.gethostname())
-        socket_address = ('localhost', port)
+        self.host_ip = socket.gethostbyname(socket.gethostname())
+        socket_address = (self.host_ip, port)
         self.server_socket.bind(socket_address)
 
     def listen(self):

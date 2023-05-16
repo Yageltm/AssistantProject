@@ -6,8 +6,8 @@ class UdpServer:
         self.client_address = None
         self.port = port
         self.server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        # self.host_ip = socket.gethostbyname(socket.gethostname())
-        server_address = ('127.0.0.1', self.port)
+        self.host_ip = socket.gethostbyname(socket.gethostname())
+        server_address = (self.host_ip, self.port)
         self.server_socket.bind(server_address)
 
     def listen(self):
