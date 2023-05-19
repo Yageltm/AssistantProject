@@ -42,4 +42,4 @@ def mouse_control():
 
 
 time.sleep(3)
-mouse_control()
+send_voice(addresses[1])

@@ -15,7 +15,7 @@ def get_voice():
 
     # Create socket and start listening for client connections
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_address = ('localhost', 9990)
+    server_address = (socket.gethostbyname(socket.gethostname()), 9990)
     server_socket.bind(server_address)
     server_socket.listen(1)
     print('Server listening on port', 9990)

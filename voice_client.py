@@ -4,7 +4,7 @@ import keyboard
 import pyaudio
 
 
-def send_voice():
+def send_voice(ip):
     # Initialize PyAudio
     audio = pyaudio.PyAudio()
 
@@ -16,7 +16,7 @@ def send_voice():
 
     # Create socket and connect to the server
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_address = ('localhost', 9990)
+    server_address = (ip, 9990)
     client_socket.connect(server_address)
 
     # Open audio stream
