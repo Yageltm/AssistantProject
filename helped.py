@@ -25,9 +25,15 @@ print(f'assistant: {helped_udp.listen()}')
 def mouse_mover():
     print('push b to stop assistant control')
     while True:
-        coordinates = helped_udp.listen().split(',')
-        print(coordinates)
-        # pyautogui.moveTo(int(coordinates[0]), int(coordinates[1]))
+        message = helped_udp.listen()
+        if message == 'right':
+            pyautogui.click(button='right')
+        elif message == 'left':
+            pyautogui.click()
+        else:
+            coordinates = message.split(',')
+            print(coordinates)
+            pyautogui.moveTo(int(coordinates[0]), int(coordinates[1]), 0.2)
         if keyboard.is_pressed('b'):
             break
 
